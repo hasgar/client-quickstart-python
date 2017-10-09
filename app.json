@@ -12,10 +12,6 @@
       "description": "Your Twilio Account Sid",
       "required": true
     },
-    "API_KEY": {
-      "description": "Your Twilio API Key",
-      "required": true
-    },
     "TWILIO_AUTH_TOKEN": {
       "description": "Your Twilio Auth Token",
       "required": true
