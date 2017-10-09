@@ -11,6 +11,10 @@ app = Flask(__name__)
 fake = Factory.create()
 alphanumeric_only = re.compile('[\W_]+')
 phone_pattern = re.compile(r"^[\d\+\-\(\) ]+$")
+TWILIO_ACCOUNT_SID = 'AC***'
+TWILIO_AUTH_TOKEN = '***'
+TWILIO_CALLER_ID = '+1***'
+TWILIO_TWIML_APP_SID = 'AP***'
 
 
 @app.route('/')
@@ -21,10 +25,10 @@ def index():
 @app.route('/token', methods=['GET'])
 def token():
     # get credentials for environment variables
-    account_sid = os.environ['TWILIO_ACCOUNT_SID']
-    auth_token = os.environ['TWILIO_AUTH_TOKEN']
-    application_sid = os.environ['TWILIO_TWIML_APP_SID']
-
+    account_sid =  os.environ.get("TWILIO_ACCOUNT_SID", TWILIO_ACCOUNT_SID)
+    auth_token = os.environ.get("TWILIO_AUTH_TOKEN", TWILIO_AUTH_TOKEN)
+    application_sid = os.environ.get("TWILIO_TWIML_APP_SID", TWILIO_TWIML_APP_SID)
+    
     # Generate a random user name
     identity = alphanumeric_only.sub('', fake.user_name())
 
@@ -42,7 +46,7 @@ def token():
 def voice():
     resp = VoiceResponse()
     if "To" in request.form and request.form["To"] != '':
-        dial = Dial(caller_id=os.environ['TWILIO_CALLER_ID'])
+        dial = Dial(caller_id=os.environ.get("TWILIO_CALLER_ID", TWILIO_CALLER_ID))
         # wrap the phone number or client name in the appropriate TwiML verb
         # by checking if the number given has only digits and format symbols
         if phone_pattern.match(request.form["To"]):
