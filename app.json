@@ -1,0 +1,32 @@
+{
+  "name": "Twilio Python Voice",
+  "description": "A simple Python server to distribute access tokens and route calls for your mobile app",
+  "repository": "https://github.com/hasgar/client-quickstart-python",
+  "keywords": [
+    "twilio",
+    "voice",
+    "mobile"
+  ],
+  "env": {
+    "TWILIO_ACCOUNT_SID": {
+      "description": "Your Twilio Account Sid",
+      "required": true
+    },
+    "API_KEY": {
+      "description": "Your Twilio API Key",
+      "required": true
+    },
+    "TWILIO_AUTH_TOKEN": {
+      "description": "Your Twilio Auth Token",
+      "required": true
+    },
+    "TWILIO_CALLER_ID": {
+      "description": "Your Caller ID Number",
+      "required": true
+    },
+    "TWILIO_TWIML_APP_SID": {
+      "description": "Your TwiML App Sid that points to this web server",
+      "required": true
+    }
+  }
+}
